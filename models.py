@@ -1,11 +1,5 @@
-from sqlalchemy import ForeignKey, Column, Integer, String, MetaData, Boolean, create_engine
-from sqlalchemy.orm import relationship, backref, declarative_base, sessionmaker
-# from sqlalchemy.ext.declarative import declarative_base
-
-# convention = {
-#     # "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
-# }
-# metadata = MetaData(naming_convention=convention)
+from sqlalchemy import ForeignKey, Column, Integer, String, Boolean, create_engine
+from sqlalchemy.orm import relationship, declarative_base, sessionmaker
 
 Base = declarative_base()
 
@@ -46,7 +40,7 @@ class Audition(Base):
     id = Column(String, primary_key = True)
     actor = Column(String, nullable = False)
     location = Column(String, nullable = False)
-    phone_no = Column(String, nullable = False)
+    phone_no = Column(Integer, nullable = False)
     hired = Column(Boolean, default = False)
     role_id = Column(Integer, ForeignKey('roles.id'), nullable = False)
 
@@ -64,13 +58,6 @@ class Audition(Base):
 theater_engine = create_engine('sqlite:///moringa_theater.db')
 my_theater_session = sessionmaker(bind = theater_engine)
 session = my_theater_session()
-
-# create role instances 
-macbeth = Role(character_name = 'Macbeth')
-
-# add and save the roles to the table
-session.add(macbeth)
-session.commit()
 
 
 
