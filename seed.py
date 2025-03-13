@@ -23,7 +23,7 @@ def add_audition():
     """Function to add an audition for a given role"""
     actor = input("Enter actor's name: ")
     location = input("Enter audition location: ")
-    phone = input("Enter actor's phone number: ")
+    phone_no = input("Enter actor's phone number: ")
     # hired = input("Was the actor hired? (yes/no): ").strip().lower() == "yes"
 
     roles = session.query(Role).all()
@@ -35,11 +35,11 @@ def add_audition():
         print(f"{role.id}. {role.character_name}")
     
     role_id = input('Enter role ID to audition for: ').strip()
-    if not role_id.isdigit() or not session.query(Role).get(int(role_id)):
+    if not role_id.isdigit() or not session.get(Role, (int(role_id))):
         print('Invalid Role ID')
         return
     
-    new_audition = Audition(actor=actor, location=location, phone=int(phone), hired=False, role_id=role_id)
+    new_audition = Audition(actor=actor, location=location, phone_no=int(phone_no), hired=False, role_id=role_id)
     session.add(new_audition)
     session.commit()
     print(f"Audition for {actor} at {location} added successfully!")
@@ -83,7 +83,7 @@ def hire_actor():
 def main():
     """Main CLI function"""
     while True:
-        print("\n📌 Choose an Option:")
+        print("\nChoose an Option:")
         print("1. Add Role")
         print("2. Add Audition")
         print("3. View Roles")

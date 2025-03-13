@@ -1,8 +1,8 @@
-"""create role and audition tables
+"""create roles and auditions tables
 
-Revision ID: d137631a8201
+Revision ID: 33b896af67b3
 Revises: 
-Create Date: 2025-03-11 13:52:41.470283
+Create Date: 2025-03-13 11:39:08.756272
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = 'd137631a8201'
+revision: str = '33b896af67b3'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -26,10 +26,10 @@ def upgrade() -> None:
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('auditions',
-    sa.Column('id', sa.String(), nullable=False),
+    sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('actor', sa.String(), nullable=False),
     sa.Column('location', sa.String(), nullable=False),
-    sa.Column('phone_no', sa.String(), nullable=False),
+    sa.Column('phone_no', sa.Integer(), nullable=False),
     sa.Column('hired', sa.Boolean(), nullable=True),
     sa.Column('role_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['role_id'], ['roles.id'], ),

@@ -37,7 +37,7 @@ class Role(Base):
 class Audition(Base):
     __tablename__ = 'auditions'
 
-    id = Column(String, primary_key = True)
+    id = Column(Integer, primary_key = True)
     actor = Column(String, nullable = False)
     location = Column(String, nullable = False)
     phone_no = Column(Integer, nullable = False)
